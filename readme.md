@@ -1,4 +1,4 @@
-# 🏫 Plataforma de Reportes del Campus con IA
+# 🏫 Plataforma de Reportes del cucei con IA
 
 ## 📌 Descripción
 
