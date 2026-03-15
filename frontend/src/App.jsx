@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Login from "./login"
-import Register from "./registre"
+import Register from "./register"
 import Reporte from "./reporte"
 
 function App(){
