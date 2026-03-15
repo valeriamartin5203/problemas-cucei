@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-function Login({setLogin,setRegistro}){
+function Register({setRegistro}){
 
 const [usuario,setUsuario]=useState("")
 const [password,setPassword]=useState("")
 
-const entrar = async ()=>{
+const registrar = async ()=>{
 
-const res = await fetch("http://localhost:3000/login",{
+const res = await fetch("http://localhost:3000/registro",{
 
 method:"POST",
 
@@ -22,11 +22,11 @@ password
 
 })
 
-if(res.ok){
-setLogin(true)
-}else{
-alert("credenciales incorrectas")
-}
+const data = await res.json()
+
+alert(data.mensaje)
+
+setRegistro(false)
 
 }
 
@@ -34,7 +34,7 @@ return(
 
 <div>
 
-<h2>Login</h2>
+<h2>Registro</h2>
 
 <input
 placeholder="usuario"
@@ -47,12 +47,8 @@ placeholder="password"
 onChange={(e)=>setPassword(e.target.value)}
 />
 
-<button onClick={entrar}>
-Entrar
-</button>
-
-<button onClick={()=>setRegistro(true)}>
-Registrarse
+<button onClick={registrar}>
+Registrar
 </button>
 
 </div>
@@ -61,4 +57,4 @@ Registrarse
 
 }
 
-export default Login
+export default Register
