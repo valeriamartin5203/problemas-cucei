@@ -161,8 +161,8 @@ app.get("/reportes", async (req, res) => {
   res.json(lista);
 });
 
-// REACT (catch-all corregido)
-app.get("/*", (req, res) => {
+// REACT (catch-all corregido con regex)
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
