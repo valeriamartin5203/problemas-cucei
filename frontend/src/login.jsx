@@ -1,9 +1,10 @@
 import { useState } from "react"
 
-function Login({setLogin,setRegistro}){
+function Login({setLogin,setUsuario,setRegistro}){
 
-const [usuario,setUsuario]=useState("")
+const [user,setUser]=useState("")
 const [password,setPassword]=useState("")
+const [mensaje,setMensaje]=useState("")
 
 const entrar = async ()=>{
 
@@ -16,16 +17,24 @@ headers:{
 },
 
 body:JSON.stringify({
-usuario,
+usuario:user,
 password
 })
 
 })
 
+const data = await res.json()
+
 if(res.ok){
+
+setUsuario(user)
+
 setLogin(true)
+
 }else{
-alert("credenciales incorrectas")
+
+setMensaje(data.mensaje)
+
 }
 
 }
@@ -36,16 +45,9 @@ return(
 
 <h2>Login</h2>
 
-<input
-placeholder="usuario"
-onChange={(e)=>setUsuario(e.target.value)}
-/>
+<input placeholder="usuario" onChange={(e)=>setUser(e.target.value)}/>
 
-<input
-type="password"
-placeholder="password"
-onChange={(e)=>setPassword(e.target.value)}
-/>
+<input type="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
 
 <button onClick={entrar}>
 Entrar
@@ -54,6 +56,10 @@ Entrar
 <button onClick={()=>setRegistro(true)}>
 Registrarse
 </button>
+
+<p style={{color:"red"}}>
+{mensaje}
+</p>
 
 </div>
 

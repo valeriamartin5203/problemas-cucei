@@ -7,14 +7,15 @@ function App(){
 
 const [login,setLogin]=useState(false)
 const [registro,setRegistro]=useState(false)
+const [usuario,setUsuario]=useState("")
 
 if(!login){
 
 if(registro){
-return <Register setRegistro={setRegistro}/>
+return <Register setLogin={setLogin} setUsuario={setUsuario}/>
 }
 
-return <Login setLogin={setLogin} setRegistro={setRegistro}/>
+return <Login setLogin={setLogin} setUsuario={setUsuario} setRegistro={setRegistro}/>
 
 }
 
@@ -24,7 +25,7 @@ return(
 
 <h1>Reportes del campus</h1>
 
-<Reporte/>
+<Reporte usuario={usuario}/>
 
 </div>
 

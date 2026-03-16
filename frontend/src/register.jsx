@@ -1,9 +1,10 @@
 import { useState } from "react"
 
-function Register({setRegistro}){
+function Register({setLogin,setUsuario}){
 
-const [usuario,setUsuario]=useState("")
+const [user,setUser]=useState("")
 const [password,setPassword]=useState("")
+const [mensaje,setMensaje]=useState("")
 
 const registrar = async ()=>{
 
@@ -16,7 +17,7 @@ headers:{
 },
 
 body:JSON.stringify({
-usuario,
+usuario:user,
 password
 })
 
@@ -24,9 +25,17 @@ password
 
 const data = await res.json()
 
-alert(data.mensaje)
+if(res.ok){
 
-setRegistro(false)
+setUsuario(user)
+
+setLogin(true)
+
+}else{
+
+setMensaje(data.mensaje)
+
+}
 
 }
 
@@ -36,20 +45,17 @@ return(
 
 <h2>Registro</h2>
 
-<input
-placeholder="usuario"
-onChange={(e)=>setUsuario(e.target.value)}
-/>
+<input placeholder="usuario" onChange={(e)=>setUser(e.target.value)}/>
 
-<input
-type="password"
-placeholder="password"
-onChange={(e)=>setPassword(e.target.value)}
-/>
+<input type="password" onChange={(e)=>setPassword(e.target.value)}/>
 
 <button onClick={registrar}>
 Registrar
 </button>
+
+<p style={{color:"red"}}>
+{mensaje}
+</p>
 
 </div>
 
