@@ -11,7 +11,7 @@ import { fileURLToPath } from "url"
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
 import User from "./models/user.js"
-import Reporte from "./models/reporte.js"
+import Reporte from "./models/reporte2.js"
 
 dotenv.config()
 
